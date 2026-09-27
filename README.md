@@ -1,107 +1,132 @@
-# CGSUSA Materials Manual PDF Downloader
+# CGSUSA Materials Manual Downloader
 
-An automated tool to download and organize all Catechesis of the Good Shepherd (CGSUSA) Materials Manual PDFs into structured folders ready for printing.
+Automates downloading and organizing all Catechesis of the Good Shepherd (CGSUSA) Materials Manual PDFs into structured folders ready for printing.
 
-## Directory Structure
+---
 
-Files are organized matching the natural CGS atrium structure:
+## 🚀 Quick Start (No Python or Technical Setup Required!)
+
+You do not need to install Python or know how to code. Just download the ready-to-run app for your computer:
+
+| Operating System | Download | Instructions |
+|---|---|---|
+| **Windows** | [**Download for Windows (.exe)**](https://github.com/joelbenway/cgsusa-manual-downloader/releases/latest) | Download `cgsusa_manual_downloader.exe` and **double-click** it. |
+| **macOS** | [**Download for Mac**](https://github.com/joelbenway/cgsusa-manual-downloader/releases/latest) | Download `cgsusa_manual_downloader-macos`, open Terminal in that folder, and run: <br>`chmod +x ./cgsusa_manual_downloader-macos && ./cgsusa_manual_downloader-macos` |
+
+*(A precompiled Windows `.exe` is also included directly in this repository: [cgsusa_manual_downloader.exe](cgsusa_manual_downloader.exe).)*
+
+### How It Works:
+1. **Launch the app** (double-click on Windows, or run in Terminal on Mac).
+2. **Enter your CGSUSA member email and password** when prompted (password typing is hidden for privacy).
+3. The app automatically downloads and organizes all **Level 1, Level 2, and Level 3** manuals into labelled folders next to the program:
 
 ```text
-cgsusa/
-├── level 1/
-│   ├── Incarnation Geography of Israel/
-│   │   ├── Globe and Raised Surface Map of Israel/
-│   │   │   ├── 1-Directions_for_Israel_Raised-Surface-Wall...pdf
-│   │   │   ├── 1-GEO_Raised_Surface_Model_DIR_2014.pdf
-│   │   │   └── Raised_Surface_Collage_PIeces___Symbols2.pdf
-│   │   └── Puzzle Map of Israel/
-│   │       └── 1-Regions_Puzzle_DIRECTIONS_2014-1.pdf
-│   ├── Incarnation Prophecies/
-│   ├── Baptism/
-│   ├── Eucharist/
-│   ├── Kingdom of God Parables/
-│   └── Liturgical Calendar/
-├── level 2/
-└── level 3/
+📁 level 1/
+   📁 Incarnation Geography of Israel/
+      📁 Globe and Raised Surface Map of Israel/
+         📄 1-Directions_for_Israel_Raised-Surface-Wall...pdf
+         📄 1-GEO_Raised_Surface_Model_DIR_2014.pdf
+         📄 Raised_Surface_Collage_PIeces___Symbols2.pdf
+      📁 Puzzle Map of Israel/
+         📄 1-Regions_Puzzle_DIRECTIONS_2014-1.pdf
+   📁 Baptism/
+   📁 Eucharist/
+   📁 Kingdom of God Parables/
+   📁 Liturgical Calendar/
+   ...
+📁 level 2/
+📁 level 3/
 ```
+
+- **Safe to re-run anytime**: Already-downloaded files are automatically recognized and skipped.
+- **Remembers your login**: Securely caches your session token locally (`cgsusa_session.json`) so you don't need to re-enter your password on future runs.
+- **Connection resilient**: Automatically recovers and retries if the server drops a connection during download.
 
 ---
 
-## Running on Windows
+## Optional: Command Line Options
 
-### Standalone Executable (No Python Required)
-A precompiled portable executable is available directly in this folder:
-- [cgsusa_manual_downloader.exe](file:///c:/Users/Joel%20Benway/Documents/cgsusa/cgsusa_manual_downloader.exe)
-
-You can send this `.exe` file to any catechist or colleague with Windows. They do not need Python or any packages installed.
-1. **Double-click** `cgsusa_manual_downloader.exe`.
-2. It prompts for your CGSUSA email and password.
-3. Automatically downloads all levels right next to the `.exe`.
-
-### Or via Python:
-```powershell
-.\venv\Scripts\activate
-python download_manuals.py
-```
-
----
-
-## Running on macOS
-
-PyInstaller cannot cross-compile a macOS binary directly from a Windows machine (because macOS binaries require Apple's native dynamic libraries and frameworks). However, you have two great options for Mac users:
-
-### Option A: One-Click Mac Launcher (`run_mac.command`)
-For Mac catechists who just want to double-click:
-1. Send them the folder containing `download_manuals.py`, `requirements.txt`, and [run_mac.command](file:///c:/Users/Joel%20Benway/Documents/cgsusa/run_mac.command).
-2. On macOS, **double-clicking** `run_mac.command` will automatically open Terminal, configure the environment, and run the downloader seamlessly.
-   *(First-time permission if needed: `chmod +x run_mac.command`)*
-
-### Option B: Build a Standalone Mac Binary with PyInstaller
-If you or a colleague have a Mac, run:
-```bash
-bash build_mac.sh
-```
-This builds the native macOS standalone binary in `dist/cgsusa_manual_downloader`.
-
-### Option C: Automated Cloud Build via GitHub Actions
-A workflow is already configured in [.github/workflows/ci.yaml](file:///c:/Users/Joel%20Benway/Documents/cgsusa/.github/workflows/ci.yaml). When pushed to GitHub, GitHub Actions will automatically spin up macOS, Windows, and Linux virtual machines in the cloud and compile native executables for all three platforms.
-
----
-
-## Command Line Options
-
-Both the `.exe` and the `.py` script support the same options:
+If you run the app from PowerShell, Command Prompt, or Terminal, you can customize what it does:
 
 | Flag | Description |
 |---|---|
 | *(no arguments)* | Automatically downloads **all levels** (Level 1, 2, and 3) |
 | `--level 1` / `2` / `3` / `all` | Download a specific level or all (default: `all`) |
-| `--version` | Display program version (v1.0.0) |
+| `--version` | Display program version |
 | `--help` | Display help and usage details |
 | `--outdir <path>` | Specify custom output folder |
 | `--no-cache` | Force a new login instead of using cached session |
 | `--no-pause` | Don't pause for Enter before exiting |
 
-### Examples:
-
+### Examples (Windows):
 ```powershell
-# Show version
-.\cgsusa_manual_downloader.exe --version
-
-# Show help
-.\cgsusa_manual_downloader.exe --help
-
 # Download all levels (default)
 .\cgsusa_manual_downloader.exe
 
 # Download only Level 1
 .\cgsusa_manual_downloader.exe --level 1
+
+# Check version
+.\cgsusa_manual_downloader.exe --version
+```
+
+### Examples (macOS):
+```bash
+# Download all levels (default)
+./cgsusa_manual_downloader-macos
+
+# Download only Level 2
+./cgsusa_manual_downloader-macos --level 2
 ```
 
 ---
 
-## Features & Reliability
+## 🛠️ Advanced: Running from Source / Building Locally (Developers)
 
-- **Session Caching**: Remembers login in `cgsusa_session.json` so passwords don't need to be re-entered.
-- **Smart Resume**: Automatically detects existing files by size and skips them, allowing safe re-runs anytime.
-- **Auto-Retry & Resilience**: Automatically handles temporary network hiccups or server connection drops (`WinError 10054`) with exponential retry.
+If you want to inspect or modify the source code, run with Python directly, or compile binaries manually:
+
+### 1. Running with Python Directly
+
+#### Windows:
+```powershell
+python -m venv venv
+.\venv\Scripts\activate
+pip install -r requirements.txt
+python download_manuals.py
+```
+*(You can also use the shorthand wrapper: `.\download_manuals`)*
+
+#### macOS:
+```bash
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+python3 download_manuals.py
+```
+*(Mac users can also double-click [run_mac.command](run_mac.command).)*
+
+---
+
+### 2. Building Standalone Binaries Locally
+
+- **Windows (.exe)**:
+  ```powershell
+  pip install pyinstaller
+  pyinstaller --noconfirm --onefile --console --name "cgsusa_manual_downloader" download_manuals.py
+  ```
+
+- **macOS Binary**:
+  ```bash
+  bash build_mac.sh
+  ```
+
+- **Automated Cloud Builds (GitHub CI)**:
+  A GitHub Actions workflow is included at [.github/workflows/ci.yaml](.github/workflows/ci.yaml). When pushed to GitHub, it automatically spins up Windows, macOS, and Linux virtual environments and publishes compiled standalone binaries on every release.
+
+---
+
+## License
+
+This project is free software, licensed under the **GNU Affero General Public License v3.0 or later** (AGPL-3.0-or-later). See the [COPYING.md](COPYING.md) file for the full license text.
+
+Copyright (c) 2026 Joel Benway
