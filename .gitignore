@@ -6,6 +6,7 @@ venv/
 build/
 dist/
 *.spec
+*.exe
 
 # CGSUSA session & credentials
 cgsusa_session.json

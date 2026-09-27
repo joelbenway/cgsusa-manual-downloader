@@ -10,10 +10,9 @@ You do not need to install Python or know how to code. Just download the ready-t
 
 | Operating System | Download | Instructions |
 |---|---|---|
-| **Windows** | [**Download for Windows (.exe)**](https://github.com/joelbenway/cgsusa-manual-downloader/releases/latest) | Download `cgsusa_manual_downloader.exe` and **double-click** it. |
+| **Windows** | [**Download for Windows (.exe)**](https://github.com/joelbenway/cgsusa-manual-downloader/releases/latest) | Download `cgsusa_manual_downloader-windows.exe` and **double-click** it. |
 | **macOS** | [**Download for Mac**](https://github.com/joelbenway/cgsusa-manual-downloader/releases/latest) | Download `cgsusa_manual_downloader-macos`, open Terminal in that folder, and run: <br>`chmod +x ./cgsusa_manual_downloader-macos && ./cgsusa_manual_downloader-macos` |
-
-*(A precompiled Windows `.exe` is also included directly in this repository: [cgsusa_manual_downloader.exe](cgsusa_manual_downloader.exe).)*
+| **Linux** | [**Download for Linux**](https://github.com/joelbenway/cgsusa-manual-downloader/releases/latest) | Download `cgsusa_manual_downloader-linux`, open Terminal, and run: <br>`chmod +x ./cgsusa_manual_downloader-linux && ./cgsusa_manual_downloader-linux` |
 
 ### How It Works:
 1. **Launch the app** (double-click on Windows, or run in Terminal on Mac).
