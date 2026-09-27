@@ -1,0 +1,20 @@
+# Python virtual environment
+venv/
+.venv/
+
+# PyInstaller builds
+build/
+dist/
+*.spec
+
+# CGSUSA session & credentials
+cgsusa_session.json
+.env
+*.log
+__pycache__/
+
+# Downloaded Materials (prevent pushing 400MB+ of PDFs to GitHub)
+level 1/
+level 2/
+level 3/
+*.pdf
